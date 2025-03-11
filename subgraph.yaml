@@ -5,28 +5,22 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum
-    name: TransparentUpgradeableProxy
+    name: SmartEaglrMatrix
     network: bsc
     source:
       address: "0xa0F4B186B5363e91A2ef9e58bF930b845Ad00BDe"
-      abi: TransparentUpgradeableProxy
+      abi: SmartEaglrMatrix
       startBlock: 46910052
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.9
       language: wasm/assemblyscript
       entities:
-        - AdminChanged
-        - BeaconUpgraded
-        - Upgraded
+        - FundsDistributed
       abis:
-        - name: TransparentUpgradeableProxy
-          file: ./abis/TransparentUpgradeableProxy.json
+        - name: SmartEaglrMatrix
+          file: ./abis/SmartEaglrMatrix.json
       eventHandlers:
-        - event: AdminChanged(address,address)
-          handler: handleAdminChanged
-        - event: BeaconUpgraded(indexed address)
-          handler: handleBeaconUpgraded
-        - event: Upgraded(indexed address)
-          handler: handleUpgraded
-      file: ./src/transparent-upgradeable-proxy.ts
+        - event: FundsDistributed(indexed address,indexed address,uint8,uint256,uint256)
+          handler: handleFundsDistributedevent
+      file: ./src/mapping.ts
